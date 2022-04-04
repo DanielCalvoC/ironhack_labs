@@ -145,17 +145,32 @@ where date like "9712_";
 select date from loan
 where date between 971201 and 971231;
 
-select distinct duration, count(loan_id), date
-from loan
-where (date between "971201" and "971231")
-group by date, duration
-order by date;
+
+-- Query 18
+-- In the trans table, for account_id 396, sum the amount of transactions for each type (VYDAJ = Outgoing, PRIJEM = Incoming).
+
+select * from trans
+where account_id = 396;
+
+select account_id, type, sum(amount) as total_amount
+from trans
+where account_id = 396
+group by account_id, type;
+
+-- Query 19
+-- From the previous output, translate the values for type to English, rename the column to transaction_type, round total_amount down to an integer
+
+select replace('prijem', 'prijem', 'incoming') type,
+from trans;
+
+select account_id, sum(amount) as total_amount, replace(('prijem', 'prijem', 'incoming')('VYDAJ', 'VYDAJ', 'outgoing'))  type, 
+from trans
+where account_id = 396
+group by account_id, type;
 
 
-
-
-
-
+select replace(replace(type, 'prijem', 'incoming'), 'vydaj', 'outgoing') as transaction_type
+from trans;
 
 
 
