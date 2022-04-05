@@ -39,7 +39,8 @@ using (address_id)
 select staff_id, first_name, last_name, count(amount) from sakila.staff
 right join sakila.payment
 using (staff_id)
-group by staff_id
+where payment_date between "2005-08-01" and "2005-09-01"
+group by staff_id;
 
 -- 6. List each film and the number of actors who are listed for that film.
 SELECT title, count(actor_id) from sakila.film
