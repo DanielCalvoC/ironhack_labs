@@ -93,7 +93,7 @@ GROUP BY first_name, last_name
 ORDER BY total_amount desc
 LIMIT 1
 
--- 2nd. Films rented
+-- 2nd. Films rented.
 
 SELECT title FROM sakila.film
 INNER JOIN sakila.inventory USING (film_id)
